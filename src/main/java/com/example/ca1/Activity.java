@@ -6,6 +6,9 @@ public class Activity implements Comparable<Activity>{
     private int duration;
     private int distance;
     private int heartRate;
+
+    private Intensity intensity;
+
     public Activity() {
     }
     public Activity(String name, String date, int duration, int distance, int heartRate) {
@@ -54,6 +57,10 @@ public class Activity implements Comparable<Activity>{
 
     public void setHeartRate(int hearRate) {
         this.heartRate = hearRate;
+    }
+
+    public void setIntensity(Intensity intensity) {
+        this.intensity = intensity;
     }
 
     public int compareTo(Activity ac){

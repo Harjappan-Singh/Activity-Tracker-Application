@@ -193,7 +193,27 @@ public class Activities {
                 System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
             }
         }
+    }
 
-
+    public void getIntensitySwimming(){
+        double kmPerHr;
+        for(Activity ac: activities){
+            if(ac.getName().equals("Swimming")){
+                kmPerHr = ac.getDistance()* (ac.getDuration()/ 60.0);
+                if ( 0 < kmPerHr && kmPerHr < 0.5){
+                    ac.setIntensity(Intensity.VERY_LIGHT);
+                } else if (0.5 < kmPerHr && kmPerHr < 1.25) {
+                    ac.setIntensity(Intensity.LIGHT);
+                } else if (1.25 < kmPerHr && kmPerHr < 2.0) {
+                    ac.setIntensity(Intensity.MODERATE);
+                }else if (2.0 < kmPerHr && kmPerHr < 2.75) {
+                    ac.setIntensity(Intensity.VIGOROUS);
+                }else if (2.75 < kmPerHr && kmPerHr < 3.5) {
+                    ac.setIntensity(Intensity.VERY_VIGOROUS);
+                }else{
+                    System.out.println();
+                }
+            }
+        }
     }
 }
