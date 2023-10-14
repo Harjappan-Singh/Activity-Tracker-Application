@@ -43,13 +43,15 @@ public class Main {
             System.out.println("1. Display Activities");
             System.out.println("2. View Sorted Activities");
             System.out.println("3. View Subset");
-            System.out.println("4. Exit");
+            System.out.println("4. Find activity");
+            System.out.println("5. Exit");
             int userInput = sc.nextInt();
             switch (userInput){
                 case 1 -> Harjappan.display();
                 case 2 -> Harjappan.viewSortedActivities();
                 case 3 -> Harjappan.viewSubsetActivities();
-                case 4 -> flag = false;
+                case 4 -> Harjappan.findActivity();
+                case 5 -> flag = false;
                 default -> System.out.println("Enter Valid option");
             }
 

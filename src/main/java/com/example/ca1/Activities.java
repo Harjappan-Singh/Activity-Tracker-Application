@@ -20,6 +20,10 @@ public class Activities {
         activities.add(activity);
     }
 
+    public void sortActivities(){
+        Collections.sort(activities);
+    }
+
 //    private void sortByDateAscending(){
 //        activities.sort((act1, act2) -> )
 //    }
@@ -124,6 +128,31 @@ public class Activities {
         }
     }
 
+    private void viewAboveDistance(){
+        System.out.print("Enter the minimum distance (in km) : ");
+        Scanner sc = new Scanner(System.in);
+        int userInput = sc.nextInt();
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+        for (Activity ac : activities){
+            if(ac.getDistance() > userInput){
+                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+            }
+        }
+
+    }
+
+    private void viewAboveDuration(){
+        System.out.print("Enter the minimum duration (in mins) : ");
+        Scanner sc = new Scanner(System.in);
+        int userInput = sc.nextInt();
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+        for (Activity ac : activities){
+            if(ac.getDuration() > userInput){
+                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+            }
+        }
+
+    }
     public void viewSubsetActivities(){
         boolean flag = true;
 
@@ -139,13 +168,32 @@ public class Activities {
 
             switch (userInput){
                 case 1 -> viewActivityType();
-//                case 2 -> viewAboveDistance();
+                case 2 -> viewAboveDistance();
 //                case 3 -> viewEnergyType();
-//                case 4 -> viewAboveDuration();
+                case 4 -> viewAboveDuration();
                 case 5 -> flag = false;
                 default -> System.out.println("Invalid Input");
             }
         }
+    }
+
+    public void findActivity(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the name of the activity");
+        String userActivityName = sc.next();
+
+        System.out.println("Enter the duration of the activity");
+        int userActivityDuration = sc.nextInt();
+
+        this.sortActivities();
+
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+        for (Activity ac : activities){
+            if(ac.getName().equals(userActivityName) && ac.getDuration() == userActivityDuration){
+                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+            }
+        }
+
 
     }
 }

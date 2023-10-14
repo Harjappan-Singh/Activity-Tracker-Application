@@ -1,6 +1,6 @@
 package com.example.ca1;
 
-public class Activity {
+public class Activity implements Comparable<Activity>{
     private String name;
     private String date;
     private int duration;
@@ -54,5 +54,13 @@ public class Activity {
 
     public void setHeartRate(int hearRate) {
         this.heartRate = hearRate;
+    }
+
+    public int compareTo(Activity ac){
+        if (this.name.compareTo(ac.getName()) == 0){
+            return Integer.compare(this.duration, ac.getDuration());
+        } else{
+            return this.name.compareTo(ac.getName());
+        }
     }
 }
