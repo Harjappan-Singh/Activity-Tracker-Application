@@ -186,7 +186,6 @@ public class Activities {
 
         this.sortActivities();
 
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
 //        for (Activity ac : activities){
 //            if(ac.getName().equals(userActivityName) && ac.getDuration() == userActivityDuration){
 //                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
@@ -195,6 +194,7 @@ public class Activities {
         Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0);
         int result = Collections.binarySearch(activities,activityToBeSearched);
         if(result >= 0){
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
             System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",activities.get(result).getName(), activities.get(result).getDate(), activities.get(result).getDuration(), activities.get(result).getDistance(), activities.get(result).getHeartRate());
         } else{
             System.out.println("No such activity exist");
