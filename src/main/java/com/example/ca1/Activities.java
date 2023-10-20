@@ -1,9 +1,8 @@
 package com.example.ca1;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Activities {
     private ArrayList<Activity> activities = new ArrayList<>();
@@ -24,13 +23,13 @@ public class Activities {
         Collections.sort(activities);
     }
 
-//    private void sortByDateAscending(){
-//        activities.sort((act1, act2) -> )
-//    }
-//
-//    private void sortByDateDescending(){
-//        activities.sort((act1, act2) -> )
-//    }
+    private void sortByDateAscending(){
+       Collections.sort(activities, new ActivityDateAscendingComparator());
+    }
+
+    private void sortByDateDescending(){
+        Collections.sort(activities, new ActivityDateDescendingComparator());
+    }
 
     private void sortByDurationAscending(){
         activities.sort((ac1, ac2) -> Integer.compare(ac1.getDuration(), ac2.getDuration()));
@@ -91,8 +90,8 @@ public class Activities {
             switch (userChoice){
 //                case 1 -> this.sortByCaloriesBurnedAscending();
 //                case 2 -> this.sortByCaloriesBurnedDescending();
-//                case 3 -> this.sortByDateAscending();
-//                case 4 -> this.sortByDateDescending();
+                case 3 -> this.sortByDateAscending();
+                case 4 -> this.sortByDateDescending();
                 case 5 -> this.sortByDurationAscending();
                 case 6 -> this.sortByDurationDescending();
                 case 7 -> this.sortByTypeAscending();

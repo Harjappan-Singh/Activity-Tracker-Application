@@ -17,7 +17,7 @@ public class Main {
         Activity ac4 = new Activity("Swimming", "05/07/2023", 60, 8, 140);
         Activity ac5 = new Activity("Running", "02/03/2023", 90, 0, 80);
         Activity ac6 = new Activity("Running", "11/08/2023", 40, 2, 160);
-        Activity ac7 = new Activity("Swimming", "20/09/2023", 35, 3, 140);
+        Activity ac7 = new Activity("Swimming", "20/09/2020", 35, 3, 140);
         Activity ac8 = new Activity("Cycling", "12/07/2023", 50, 0, 100);
         Activity ac9 = new Activity("Cycling", "29/06/2023", 45, 7, 150);
         Activity ac10 = new Activity("Cycling", "08/01/2023", 75, 0, 110);
