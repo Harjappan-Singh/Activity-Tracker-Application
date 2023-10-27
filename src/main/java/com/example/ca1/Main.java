@@ -1,5 +1,7 @@
 package com.example.ca1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +12,21 @@ public class Main {
     }
 
     public static void start(){
+
+try(Scanner sc = new Scanner(new File("activity_data.csv"))){
+
+} catch(FileNotFoundException exception){
+    System.out.println("FileNotFoundException caught. The file " +fileName+ " may not exist." + exception);
+}
+
+
+
+
+
+
+
+
+
         ArrayList<Activity> myActivities = new ArrayList<>();
         Activity ac1 = new Activity("Swimming", "22/05/2023", 20, 10, 120);
         Activity ac2 = new Activity("Running", "15/06/2023", 30, 5, 150);

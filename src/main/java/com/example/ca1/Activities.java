@@ -186,11 +186,13 @@ public class Activities {
 
         this.sortActivities();
 
-//        for (Activity ac : activities){
-//            if(ac.getName().equals(userActivityName) && ac.getDuration() == userActivityDuration){
-//                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
-//            }
-//        }
+/*
+       for (Activity ac : activities){
+            if(ac.getName().equals(userActivityName) && ac.getDuration() == userActivityDuration){
+                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+            }
+        }
+*/
         Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0);
         int result = Collections.binarySearch(activities,activityToBeSearched);
         if(result >= 0){
