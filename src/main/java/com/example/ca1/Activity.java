@@ -4,14 +4,14 @@ public class Activity implements Comparable<Activity>{
     private String name;
     private String date;
     private int duration;
-    private int distance;
+    private double distance;
     private int heartRate;
 
     private Intensity intensity;
 
     public Activity() {
     }
-    public Activity(String name, String date, int duration, int distance, int heartRate) {
+    public Activity(String name, String date, int duration, double distance, int heartRate) {
         this.name = name;
         this.date = date;
         this.duration = duration;
@@ -43,11 +43,11 @@ public class Activity implements Comparable<Activity>{
         this.duration = duration;
     }
 
-    public int getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 

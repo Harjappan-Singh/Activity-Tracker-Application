@@ -10,7 +10,7 @@ public class Activities {
     public void display(){
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
         for(Activity activity: activities){
-            System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",activity.getName(), activity.getDate(), activity.getDuration(), activity.getDistance(), activity.getHeartRate());
+            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",activity.getName(), activity.getDate(), activity.getDuration(), activity.getDistance(), activity.getHeartRate());
         }
         System.out.println();
     }
@@ -51,7 +51,7 @@ public class Activities {
         Collections.sort(activities, new Comparator<Activity>() {
             @Override
             public int compare(Activity ac1, Activity ac2) {
-                return Integer.compare(ac1.getDistance(),ac2.getDistance());
+                return Double.compare(ac1.getDistance(),ac2.getDistance());
             }
         });
     }
@@ -60,7 +60,7 @@ public class Activities {
         Collections.sort(activities, new Comparator<Activity>() {
             @Override
             public int compare(Activity ac1, Activity ac2) {
-                return -1 * Integer.compare(ac1.getDistance(),ac2.getDistance());
+                return -1 * Double.compare(ac1.getDistance(),ac2.getDistance());
             }
         });
     }
@@ -119,7 +119,7 @@ public class Activities {
             System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
             for (Activity ac : activities){
                 if(ac.getName().toLowerCase().equals(userInput)){
-                    System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+                    System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
                 }
             }
         } else{
@@ -134,7 +134,7 @@ public class Activities {
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
         for (Activity ac : activities){
             if(ac.getDistance() > userInput){
-                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+                System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
             }
         }
 
@@ -147,7 +147,7 @@ public class Activities {
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
         for (Activity ac : activities){
             if(ac.getDuration() > userInput){
-                System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+                System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
             }
         }
 
@@ -197,7 +197,7 @@ public class Activities {
         int result = Collections.binarySearch(activities,activityToBeSearched);
         if(result >= 0){
             System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
-            System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",activities.get(result).getName(), activities.get(result).getDate(), activities.get(result).getDuration(), activities.get(result).getDistance(), activities.get(result).getHeartRate());
+            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",activities.get(result).getName(), activities.get(result).getDate(), activities.get(result).getDuration(), activities.get(result).getDistance(), activities.get(result).getHeartRate());
         } else{
             System.out.println("No such activity exist");
         }
