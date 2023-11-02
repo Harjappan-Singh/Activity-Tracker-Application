@@ -31,9 +31,13 @@ public class Main {
                 int duration = Integer.parseInt(tokens[2]);
                 double distance = Double.parseDouble(tokens[3]);
                 int heartRate = Integer.parseInt(tokens[4]);
+                Intensity in = Intensity.NONE;
 
-                userActivities.addActivity(new Activity(name,date,duration,distance,heartRate));
+
+
+                userActivities.addActivity(new Activity(name,date,duration,distance,heartRate, in));
             }
+            userActivities.setIntensities();
 
             // Menu
             Scanner kbrd = new Scanner(System.in);

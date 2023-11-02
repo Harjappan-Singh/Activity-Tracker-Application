@@ -9,15 +9,19 @@ public class Activity implements Comparable<Activity>{
 
     private Intensity intensity;
 
+
     public Activity() {
     }
-    public Activity(String name, String date, int duration, double distance, int heartRate) {
+    public Activity(String name, String date, int duration, double distance, int heartRate, Intensity intensity) {
         this.name = name;
         this.date = date;
         this.duration = duration;
         this.distance = distance;
         this.heartRate = heartRate;
+        this.intensity = Intensity.NONE;
     }
+
+
 
     public String getName() {
         return name;
@@ -61,6 +65,10 @@ public class Activity implements Comparable<Activity>{
 
     public void setIntensity(Intensity intensity) {
         this.intensity = intensity;
+    }
+
+    public Intensity getIntensity() {
+        return intensity;
     }
 
     public int compareTo(Activity ac){

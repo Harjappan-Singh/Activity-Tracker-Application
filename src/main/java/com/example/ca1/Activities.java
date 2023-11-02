@@ -8,9 +8,11 @@ public class Activities {
     private ArrayList<Activity> activities = new ArrayList<>();
 
     public void display(){
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
+        double caloriesBurned = 0.0;
         for(Activity activity: activities){
-            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",activity.getName(), activity.getDate(), activity.getDuration(), activity.getDistance(), activity.getHeartRate());
+            caloriesBurned = activity.getDuration() * Intensity.getIntensityValue(activity);
+            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",activity.getName(), activity.getDate(), activity.getDuration(), activity.getDistance(), activity.getHeartRate(), activity.getIntensity(), caloriesBurned);
         }
         System.out.println();
     }
@@ -193,7 +195,7 @@ public class Activities {
             }
         }
 */
-        Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0);
+        Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0, null);
         int result = Collections.binarySearch(activities,activityToBeSearched);
         if(result >= 0){
             System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
@@ -203,25 +205,50 @@ public class Activities {
         }
     }
 
-    public void getIntensitySwimming(){
+
+    public void setIntensities(){
         double kmPerHr;
+
+
         for(Activity ac: activities){
-            if(ac.getName().equals("Swimming")){
-                kmPerHr = ac.getDistance()* (ac.getDuration()/ 60.0);
-                if ( 0 < kmPerHr && kmPerHr < 0.5){
-                    ac.setIntensity(Intensity.VERY_LIGHT);
-                } else if (0.5 < kmPerHr && kmPerHr < 1.25) {
-                    ac.setIntensity(Intensity.LIGHT);
-                } else if (1.25 < kmPerHr && kmPerHr < 2.0) {
-                    ac.setIntensity(Intensity.MODERATE);
-                }else if (2.0 < kmPerHr && kmPerHr < 2.75) {
-                    ac.setIntensity(Intensity.VIGOROUS);
-                }else if (2.75 < kmPerHr && kmPerHr < 3.5) {
-                    ac.setIntensity(Intensity.VERY_VIGOROUS);
-                }else{
-                    System.out.println();
+                kmPerHr = ac.getDistance()/ (ac.getDuration()/ 60.0);
+                if(ac.getName().equals("Swimming")){
+                    if ( 0 <= kmPerHr && kmPerHr < 0.5){
+                        ac.setIntensity(Intensity.VERY_LIGHT);
+                    } else if (0.5 <= kmPerHr && kmPerHr < 1.25) {
+                        ac.setIntensity(Intensity.LIGHT);
+                    } else if (1.25 <= kmPerHr && kmPerHr < 2.0) {
+                        ac.setIntensity(Intensity.MODERATE);
+                    }else if (2.0 <= kmPerHr && kmPerHr < 2.75) {
+                        ac.setIntensity(Intensity.VIGOROUS);
+                    }else if (2.75 <= kmPerHr && kmPerHr < 3.5) {
+                        ac.setIntensity(Intensity.VERY_VIGOROUS);
+                    }
+                } else if(ac.getName().equals("Running")){
+                    if( kmPerHr < 4){
+                        ac.setIntensity(Intensity.VERY_LIGHT);
+                    } else if(4 <= kmPerHr && kmPerHr < 8){
+                        ac.setIntensity(Intensity.LIGHT);
+                    } else if(8 <= kmPerHr && kmPerHr < 12){
+                        ac.setIntensity(Intensity.MODERATE);
+                    } else if(12 <= kmPerHr && kmPerHr < 16){
+                        ac.setIntensity(Intensity.VIGOROUS);
+                    } else if(16 <= kmPerHr && kmPerHr < 24){
+                        ac.setIntensity(Intensity.VERY_VIGOROUS);
+                    }
+                } else{ // assuming its Cycling
+                    if(kmPerHr < 8){
+                        ac.setIntensity(Intensity.VERY_LIGHT);
+                    } else if(8 <= kmPerHr && kmPerHr < 16){
+                        ac.setIntensity(Intensity.LIGHT);
+                    } else if(16 <= kmPerHr && kmPerHr < 25){
+                        ac.setIntensity(Intensity.MODERATE);
+                    } else if(25 <= kmPerHr && kmPerHr < 33){
+                        ac.setIntensity(Intensity.VIGOROUS);
+                    } else if(33 <= kmPerHr && kmPerHr < 40){
+                        ac.setIntensity(Intensity.VERY_VIGOROUS);
+                    }
                 }
-            }
         }
     }
 }
