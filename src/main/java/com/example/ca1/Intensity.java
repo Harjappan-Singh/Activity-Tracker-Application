@@ -7,15 +7,15 @@ public enum Intensity {
         Intensity intensity = Intensity.NONE;
         double kmPerHr = distance/ (duration/ 60.0);
         if(name.equals("Swimming")){
-            if ( 0 <= kmPerHr && kmPerHr < 0.5){
+            if ( 0.5 <= kmPerHr && kmPerHr < 1.25){
                 intensity = Intensity.VERY_LIGHT;
-            } else if (0.5 <= kmPerHr && kmPerHr < 1.25) {
-                intensity = Intensity.LIGHT;
             } else if (1.25 <= kmPerHr && kmPerHr < 2.0) {
+                intensity = Intensity.LIGHT;
+            } else if (2.0 <= kmPerHr && kmPerHr < 2.75) {
                 intensity = Intensity.MODERATE;
-            }else if (2.0 <= kmPerHr && kmPerHr < 2.75) {
-                intensity = Intensity.VIGOROUS;
             }else if (2.75 <= kmPerHr && kmPerHr < 3.5) {
+                intensity = Intensity.VIGOROUS;
+            }else if (3.5 <= kmPerHr) {
                 intensity = Intensity.VERY_VIGOROUS;
             }
         } else if(name.equals("Running")){

@@ -218,6 +218,7 @@ public class Activities {
         this.sortActivities();
 
 /*
+without binary search
        for (Activity ac : activities){
             if(ac.getName().equals(userActivityName) && ac.getDuration() == userActivityDuration){
                 System.out.printf("%-20s %-20s %-20d %-20d %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
@@ -265,15 +266,46 @@ public class Activities {
         double avgRunningDist = totalDistRunning/countRunning;
         double avgCyclingDist = totalDistCycling/countCycling;
 
-        System.out.println("Activity        Avg Distance");
-        System.out.println("Cycling " + avgCyclingDist);
-        System.out.println("Swimming " + avgSwimmingDist);
-        System.out.println("Running " + avgRunningDist);
+        System.out.print("+" + "-".repeat(43) + "+ \n");
+        System.out.printf("| %-20s %-20s | \n", "Activity", "Average Distance");
+        System.out.printf("| %-20s %-20.2f | \n","Cycling", avgCyclingDist);
+        System.out.printf("| %-20s %-20.2f | \n","Running", avgRunningDist);
+        System.out.printf("| %-20s %-20.2f | \n","Swimming", avgSwimmingDist);
+        System.out.print("+" + "-".repeat(43) + "+\n");
     }
 
     private void viewAvgCalBurntStats(){
+        int countSwimming = 0;
+        double totalCalSwimming = 0;
 
-    }
+        int countRunning = 0;
+        double totalCalRunning = 0;
+
+        int countCycling = 0;
+        double totalCalCycling = 0;
+
+        for(Activity ac: activities){
+            if(ac.getName().equals("Swimming")){
+                totalCalSwimming+= ac.getCaloriesBurned();
+                countSwimming++;
+            } else if(ac.getName().equals("Running")) {
+                totalCalRunning += ac.getCaloriesBurned();
+                countRunning++;
+            } else{ // assuming its cycling
+                totalCalCycling += ac.getCaloriesBurned();
+                countCycling++;
+            }
+        }
+        double avgSwimmingCal = totalCalSwimming/ countSwimming;
+        double avgRunningCal = totalCalRunning/countRunning;
+        double avgCyclingCal = totalCalCycling/countCycling;
+
+        System.out.print("+" + "-".repeat(43) + "+ \n");
+        System.out.printf("| %-20s %-20s | \n", "Activity", "Average Calories");
+        System.out.printf("| %-20s %-20.2f | \n","Cycling", avgCyclingCal);
+        System.out.printf("| %-20s %-20.2f | \n","Running", avgRunningCal);
+        System.out.printf("| %-20s %-20.2f | \n","Swimming", avgSwimmingCal);
+        System.out.print("+" + "-".repeat(43) + "+\n");    }
     public void viewStatistics(){
         boolean flag = true;
 

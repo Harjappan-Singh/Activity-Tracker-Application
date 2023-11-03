@@ -13,10 +13,10 @@ public class Main {
 
     public static void start(){
         Activities userActivities = new Activities();
-        String fileName = "activity_data_10.csv";
+        String fileName = "TestData/activity_data_50.csv";
 
         // reading file and storing into arrayList
-        try (Scanner sc = new Scanner(new File("activity_data_10.csv")))
+        try (Scanner sc = new Scanner(new File("TestData/activity_data_1000.csv")))
         {
             if(sc.hasNextLine())
                 sc.nextLine();
@@ -44,7 +44,7 @@ public class Main {
                 System.out.println("2. View Sorted Activities");
                 System.out.println("3. View Subset");
                 System.out.println("4. Find activity");
-                System.out.println("5 View statistics");
+                System.out.println("5. View statistics");
                 System.out.println("6. Exit");
                 int userInput = kbrd.nextInt();
                 switch (userInput){
