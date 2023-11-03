@@ -6,21 +6,21 @@ public class Activity implements Comparable<Activity>{
     private int duration;
     private double distance;
     private int heartRate;
-
     private Intensity intensity;
+    private double caloriesBurned;
 
 
     public Activity() {
     }
-    public Activity(String name, String date, int duration, double distance, int heartRate, Intensity intensity) {
+    public Activity(String name, String date, int duration, double distance, int heartRate) {
         this.name = name;
         this.date = date;
         this.duration = duration;
         this.distance = distance;
         this.heartRate = heartRate;
-        this.intensity = Intensity.NONE;
+        this.intensity = Intensity.getIntensity(name, duration, distance);
+        this.caloriesBurned = duration * Intensity.getIntensityValue(name, this.intensity);
     }
-
 
 
     public String getName() {
@@ -70,6 +70,15 @@ public class Activity implements Comparable<Activity>{
     public Intensity getIntensity() {
         return intensity;
     }
+
+    public void setCaloriesBurned(double caloriesBurned) {
+        this.caloriesBurned = caloriesBurned;
+    }
+
+    public double getCaloriesBurned() {
+        return caloriesBurned;
+    }
+
 
     public int compareTo(Activity ac){
         if (this.name.compareTo(ac.getName()) == 0){

@@ -9,10 +9,8 @@ public class Activities {
 
     public void display(){
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
-        double caloriesBurned = 0.0;
         for(Activity activity: activities){
-            caloriesBurned = activity.getDuration() * Intensity.getIntensityValue(activity);
-            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",activity.getName(), activity.getDate(), activity.getDuration(), activity.getDistance(), activity.getHeartRate(), activity.getIntensity(), caloriesBurned);
+            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",activity.getName(), activity.getDate(), activity.getDuration(), activity.getDistance(), activity.getHeartRate(), activity.getIntensity(), activity.getCaloriesBurned());
         }
         System.out.println();
     }
@@ -23,6 +21,14 @@ public class Activities {
 
     public void sortActivities(){
         Collections.sort(activities);
+    }
+
+    public void sortByCaloriesBurnedAscending(){
+        activities.sort((ac1, ac2) -> Double.compare(ac1.getCaloriesBurned(), ac2.getCaloriesBurned()));
+    }
+
+    public void sortByCaloriesBurnedDescending(){
+        activities.sort((ac1, ac2) -> -1* Double.compare(ac1.getCaloriesBurned(), ac2.getCaloriesBurned()));
     }
 
     private void sortByDateAscending(){
@@ -85,13 +91,13 @@ public class Activities {
             System.out.println("8. Descending order of type");
             System.out.println("9. Ascending order of distance covered");
             System.out.println("10. Descending order of distance covered");
-            System.out.println("11. Exit");
+            System.out.println("11. Back");
 
             Scanner sc = new Scanner(System.in);
             int userChoice = sc.nextInt();
             switch (userChoice){
-//                case 1 -> this.sortByCaloriesBurnedAscending();
-//                case 2 -> this.sortByCaloriesBurnedDescending();
+                case 1 -> this.sortByCaloriesBurnedAscending();
+                case 2 -> this.sortByCaloriesBurnedDescending();
                 case 3 -> this.sortByDateAscending();
                 case 4 -> this.sortByDateDescending();
                 case 5 -> this.sortByDurationAscending();
@@ -118,10 +124,10 @@ public class Activities {
         }
 
         if (flag){
-            System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
             for (Activity ac : activities){
                 if(ac.getName().toLowerCase().equals(userInput)){
-                    System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+                    System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate(), ac.getIntensity(), ac.getCaloriesBurned());
                 }
             }
         } else{
@@ -133,23 +139,46 @@ public class Activities {
         System.out.print("Enter the minimum distance (in km) : ");
         Scanner sc = new Scanner(System.in);
         int userInput = sc.nextInt();
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
         for (Activity ac : activities){
             if(ac.getDistance() > userInput){
-                System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+                System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate(), ac.getIntensity(), ac.getCaloriesBurned());
             }
         }
 
+    }
+
+    private void viewForEnergyType(){
+        boolean flag = false;
+
+        System.out.print("Enter the energy expended (intensity) type: ");
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.next().toLowerCase();
+        if(userInput.equals("very_light") || userInput.equals("light")  || userInput.equals("moderate")
+                || userInput.equals("vigorous")|| userInput.equals("very_vigorous")){
+            flag = true;
+        }
+
+        if (flag){
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
+            for (Activity ac : activities){
+                if(ac.getIntensity().toString().toLowerCase().equals(userInput)){
+                    System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate(), ac.getIntensity(), ac.getCaloriesBurned());
+                }
+            }
+        } else{
+            System.out.println("Energy expended type doesn't exist");
+        }
     }
 
     private void viewAboveDuration(){
         System.out.print("Enter the minimum duration (in mins) : ");
         Scanner sc = new Scanner(System.in);
         int userInput = sc.nextInt();
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
         for (Activity ac : activities){
             if(ac.getDuration() > userInput){
-                System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate());
+                System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",ac.getName(), ac.getDate(), ac.getDuration(), ac.getDistance(), ac.getHeartRate(), ac.getIntensity(), ac.getCaloriesBurned());
             }
         }
 
@@ -162,7 +191,7 @@ public class Activities {
             System.out.println("2. View activity above a minimum distance covered");
             System.out.println("3. View activity based on type of energy expended");
             System.out.println("4. View activity above a minimum duration");
-            System.out.println("5. Exit");
+            System.out.println("5. Back");
 
             Scanner sc = new Scanner(System.in);
             int userInput = sc.nextInt();
@@ -170,7 +199,7 @@ public class Activities {
             switch (userInput){
                 case 1 -> viewActivityType();
                 case 2 -> viewAboveDistance();
-//                case 3 -> viewEnergyType();
+                case 3 -> viewForEnergyType();
                 case 4 -> viewAboveDuration();
                 case 5 -> flag = false;
                 default -> System.out.println("Invalid Input");
@@ -195,60 +224,73 @@ public class Activities {
             }
         }
 */
-        Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0, null);
+        Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0);
         int result = Collections.binarySearch(activities,activityToBeSearched);
         if(result >= 0){
-            System.out.printf("%-20s %-20s %-20s %-20s %-20s %n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate");
-            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %n",activities.get(result).getName(), activities.get(result).getDate(), activities.get(result).getDuration(), activities.get(result).getDistance(), activities.get(result).getHeartRate());
+            System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
+            System.out.printf("%-20s %-20s %-20d %-20.2f %-20d %-20s %-20.2f%n",activities.get(result).getName(),
+                    activities.get(result).getDate(), activities.get(result).getDuration(), activities.get(result).getDistance(),
+                    activities.get(result).getHeartRate(), activities.get(result).getIntensity(),
+                    activities.get(result).getCaloriesBurned());
+
         } else{
             System.out.println("No such activity exist");
         }
     }
 
 
-    public void setIntensities(){
-        double kmPerHr;
+    private void viewAvgDistanceStats(){
+        int countSwimming = 0;
+        double totalDistSwimming = 0;
 
+        int countRunning = 0;
+        double totalDistRunning = 0;
+
+        int countCycling = 0;
+        double totalDistCycling = 0;
 
         for(Activity ac: activities){
-                kmPerHr = ac.getDistance()/ (ac.getDuration()/ 60.0);
-                if(ac.getName().equals("Swimming")){
-                    if ( 0 <= kmPerHr && kmPerHr < 0.5){
-                        ac.setIntensity(Intensity.VERY_LIGHT);
-                    } else if (0.5 <= kmPerHr && kmPerHr < 1.25) {
-                        ac.setIntensity(Intensity.LIGHT);
-                    } else if (1.25 <= kmPerHr && kmPerHr < 2.0) {
-                        ac.setIntensity(Intensity.MODERATE);
-                    }else if (2.0 <= kmPerHr && kmPerHr < 2.75) {
-                        ac.setIntensity(Intensity.VIGOROUS);
-                    }else if (2.75 <= kmPerHr && kmPerHr < 3.5) {
-                        ac.setIntensity(Intensity.VERY_VIGOROUS);
-                    }
-                } else if(ac.getName().equals("Running")){
-                    if( kmPerHr < 4){
-                        ac.setIntensity(Intensity.VERY_LIGHT);
-                    } else if(4 <= kmPerHr && kmPerHr < 8){
-                        ac.setIntensity(Intensity.LIGHT);
-                    } else if(8 <= kmPerHr && kmPerHr < 12){
-                        ac.setIntensity(Intensity.MODERATE);
-                    } else if(12 <= kmPerHr && kmPerHr < 16){
-                        ac.setIntensity(Intensity.VIGOROUS);
-                    } else if(16 <= kmPerHr && kmPerHr < 24){
-                        ac.setIntensity(Intensity.VERY_VIGOROUS);
-                    }
-                } else{ // assuming its Cycling
-                    if(kmPerHr < 8){
-                        ac.setIntensity(Intensity.VERY_LIGHT);
-                    } else if(8 <= kmPerHr && kmPerHr < 16){
-                        ac.setIntensity(Intensity.LIGHT);
-                    } else if(16 <= kmPerHr && kmPerHr < 25){
-                        ac.setIntensity(Intensity.MODERATE);
-                    } else if(25 <= kmPerHr && kmPerHr < 33){
-                        ac.setIntensity(Intensity.VIGOROUS);
-                    } else if(33 <= kmPerHr && kmPerHr < 40){
-                        ac.setIntensity(Intensity.VERY_VIGOROUS);
-                    }
-                }
+            if(ac.getName().equals("Swimming")){
+                totalDistSwimming+= ac.getDistance();
+                countSwimming++;
+            } else if(ac.getName().equals("Running")) {
+                totalDistRunning += ac.getDistance();
+                countRunning++;
+            } else{ // assuming its cycling
+                totalDistCycling += ac.getDistance();
+                countCycling++;
+            }
+        }
+        double avgSwimmingDist = totalDistSwimming/ countSwimming;
+        double avgRunningDist = totalDistRunning/countRunning;
+        double avgCyclingDist = totalDistCycling/countCycling;
+
+        System.out.println("Activity        Avg Distance");
+        System.out.println("Cycling " + avgCyclingDist);
+        System.out.println("Swimming " + avgSwimmingDist);
+        System.out.println("Running " + avgRunningDist);
+    }
+
+    private void viewAvgCalBurntStats(){
+
+    }
+    public void viewStatistics(){
+        boolean flag = true;
+
+        while(flag){
+            System.out.println("1. View Average distance per activity");
+            System.out.println("2. View Average calories burned");
+            System.out.println("3. Back");
+
+            Scanner sc = new Scanner(System.in);
+            int userInput = sc.nextInt();
+
+            switch (userInput){
+                case 1 -> viewAvgDistanceStats();
+                case 2 -> viewAvgCalBurntStats();
+                case 3-> flag = false;
+                default -> System.out.println("Invalid Input");
+            }
         }
     }
 }

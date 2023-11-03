@@ -31,13 +31,10 @@ public class Main {
                 int duration = Integer.parseInt(tokens[2]);
                 double distance = Double.parseDouble(tokens[3]);
                 int heartRate = Integer.parseInt(tokens[4]);
-                Intensity in = Intensity.NONE;
 
-
-
-                userActivities.addActivity(new Activity(name,date,duration,distance,heartRate, in));
+                userActivities.addActivity(new Activity(name,date,duration,distance,heartRate));
             }
-            userActivities.setIntensities();
+//            userActivities.setIntensities();
 
             // Menu
             Scanner kbrd = new Scanner(System.in);
@@ -47,14 +44,16 @@ public class Main {
                 System.out.println("2. View Sorted Activities");
                 System.out.println("3. View Subset");
                 System.out.println("4. Find activity");
-                System.out.println("5. Exit");
+                System.out.println("5 View statistics");
+                System.out.println("6. Exit");
                 int userInput = kbrd.nextInt();
                 switch (userInput){
                     case 1 -> userActivities.display();
                     case 2 -> userActivities.viewSortedActivities();
                     case 3 -> userActivities.viewSubsetActivities();
                     case 4 -> userActivities.findActivity();
-                    case 5 -> flag = false;
+                    case 5 -> userActivities.viewStatistics();
+                    case 6 -> flag = false;
                     default -> System.out.println("Enter Valid option");
                 }
             }
