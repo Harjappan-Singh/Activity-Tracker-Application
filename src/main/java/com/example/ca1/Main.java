@@ -13,10 +13,10 @@ public class Main {
 
     public static void start(){
         Activities userActivities = new Activities();
-        String fileName = "TestData/activity_data_50.csv";
+        String fileName = "TestData/activity_data_100.csv";
 
         // reading file and storing into arrayList
-        try (Scanner sc = new Scanner(new File("TestData/activity_data_1000.csv")))
+        try (Scanner sc = new Scanner(new File(fileName)))
         {
             if(sc.hasNextLine())
                 sc.nextLine();
@@ -34,7 +34,6 @@ public class Main {
 
                 userActivities.addActivity(new Activity(name,date,duration,distance,heartRate));
             }
-//            userActivities.setIntensities();
 
             // Menu
             Scanner kbrd = new Scanner(System.in);
