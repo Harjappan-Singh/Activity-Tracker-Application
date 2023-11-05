@@ -1,4 +1,4 @@
-#**Activity Tracker Application**
+# **Activity Tracker Application**
 
 
 *An activity tracker application designed to monitor and analyze various activities.
