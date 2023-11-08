@@ -13,7 +13,7 @@ public class Main {
 
     public static void start(){
         Activities userActivities = new Activities();
-        String fileName = "TestData/activity_data_100.csv";
+        String fileName = "TestData/activity_data_10.csv";
 
         // reading file and storing into arrayList
         try (Scanner sc = new Scanner(new File(fileName)))

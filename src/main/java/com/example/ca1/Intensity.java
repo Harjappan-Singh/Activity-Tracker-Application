@@ -3,6 +3,7 @@ package com.example.ca1;
 public enum Intensity {
     NONE, VERY_LIGHT, LIGHT, MODERATE, VIGOROUS, VERY_VIGOROUS;
 
+    // getting the name of the intensity using name, duration and distance of activity passed
     public static Intensity getIntensity(String name, int duration, double distance){
         Intensity intensity = Intensity.NONE;
         double kmPerHr = distance/ (duration/ 60.0);
@@ -46,6 +47,7 @@ public enum Intensity {
         return intensity;
     }
 
+    // getting values for intensities for specific activities
     public static double getIntensityValue(String name, Intensity intensity) {
         double intensityVal = 0.0;
         if (name.equals("Swimming")) {

@@ -7,6 +7,7 @@ import java.util.*;
 public class Activities {
     private ArrayList<Activity> activities = new ArrayList<>();
 
+    // displaying the activities in cleaner format
     public void display(){
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
         for(Activity activity: activities){
@@ -15,14 +16,17 @@ public class Activities {
         System.out.println();
     }
 
+    // adding activity to arraylist
     public void addActivity(Activity activity){
         activities.add(activity);
     }
 
+    // sorting activities using their natural ordering
     public void sortActivities(){
         Collections.sort(activities);
     }
 
+    // Sorting in different ways making use of lamda expressions, Comparators, anonymous in-class comparators
     public void sortByCaloriesBurnedAscending(){
         activities.sort((ac1, ac2) -> Double.compare(ac1.getCaloriesBurned(), ac2.getCaloriesBurned()));
     }
@@ -74,7 +78,7 @@ public class Activities {
     }
 
 
-
+// menu for sorting
     public void viewSortedActivities(){
 
         boolean flag = true;
@@ -113,6 +117,7 @@ public class Activities {
 
     }
 
+    // viewing
     private void viewActivityType(){
         boolean flag = false;
 
@@ -183,6 +188,7 @@ public class Activities {
         }
 
     }
+    // viewing menu
     public void viewSubsetActivities(){
         boolean flag = true;
 
@@ -207,6 +213,7 @@ public class Activities {
         }
     }
 
+    // finding specific activity using binary search
     public void findActivity(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the name of the activity");
@@ -214,9 +221,6 @@ public class Activities {
 
         System.out.println("Enter the duration of the activity");
         int userActivityDuration = sc.nextInt();
-
-        this.sortActivities();
-
 /*
 without binary search
        for (Activity ac : activities){
@@ -226,6 +230,7 @@ without binary search
         }
 */
         Activity activityToBeSearched = new Activity(userActivityName,null, userActivityDuration, 0, 0);
+        this.sortActivities();
         int result = Collections.binarySearch(activities,activityToBeSearched);
         if(result >= 0){
             System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %-20s%n", "Activity", "Date","Duration(mins)", "Distance(kms)", "Avg Heart-Rate", "Intensity", "Calories Burned");
@@ -240,6 +245,7 @@ without binary search
     }
 
 
+    // Statistics
     private void viewAvgDistanceStats(){
         int countSwimming = 0;
         double totalDistSwimming = 0;
@@ -306,6 +312,7 @@ without binary search
         System.out.printf("| %-20s %-20.2f | \n","Running", avgRunningCal);
         System.out.printf("| %-20s %-20.2f | \n","Swimming", avgSwimmingCal);
         System.out.print("+" + "-".repeat(43) + "+\n");    }
+
     public void viewStatistics(){
         boolean flag = true;
 

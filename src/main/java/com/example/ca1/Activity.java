@@ -10,6 +10,7 @@ public class Activity implements Comparable<Activity>{
     private double caloriesBurned;
 
 
+    // constructors
     public Activity() {
     }
     public Activity(String name, String date, int duration, double distance, int heartRate) {
@@ -23,6 +24,7 @@ public class Activity implements Comparable<Activity>{
     }
 
 
+    // getters and setters
     public String getName() {
         return name;
     }
@@ -80,6 +82,7 @@ public class Activity implements Comparable<Activity>{
     }
 
 
+    // natural ordering
     public int compareTo(Activity ac){
         if (this.name.compareTo(ac.getName()) == 0){
             return Integer.compare(this.duration, ac.getDuration());
